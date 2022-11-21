@@ -6,8 +6,7 @@ float bottomX, bottomY, bottomWidth, bottomHeight;
 float picWidthAdjusted2=0.0, picHeightAdjusted2=0.0;
 PImage pic1, pic2, pic3;
 Boolean nightMode=false;
-int tintDayMode=255, tintDayModeOpacity=50, tintRed=64, tintGreen=64, tintBlue=40, tintNightModeOpacity=85;
-//
+int tintDayMode=255, tintDayModeOpacity=100;
 void setup()
 {
   size(1300, 1100); //Landscape
@@ -69,7 +68,8 @@ void setup()
   rect( topX, topY, topWidth, topHeight );
   rect( bottomX, bottomY, bottomWidth, bottomHeight );
   //
-
+  if ( nightMode == false ) tint( tintDayMode, tintDayModeOpacity ); //Gray Scale, Day use: use 1/2 tint value for white (i.e. 128/256=1/2)
+  if ( nightMode == true ) tint( 35, 78, 134 ); //RGB: Night Mode
   image( pic1, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
 }//End setup
 //
@@ -94,7 +94,7 @@ void mousePressed() {
   if ( mouseButton == RIGHT ) {
     nightMode = false;
     rect( backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight );
-    tint(256, 256, 256);
+    tint(255, 100); //Gray Scale: use 1/2 tint value for white (i.e. 128/256=1/2)
     image(pic1, backgroundImageX, backgroundImageY, backgroundImageWidth, backgroundImageHeight);
   }
 }//End mousePressed
